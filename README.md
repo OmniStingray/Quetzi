@@ -12,3 +12,5 @@ While this is my first game, I was not familiar with writting a GDD and just cop
 As I am not as familiar with how to use .git, I'm not sure I have done this correctly either.
 
 The game has a few folders with the different scenes, assets, and menues.
+
+While I made modifications, the main tutorial series I followed was this one: https://www.youtube.com/playlist?list=PLiJ2loFXqTO1_raZB5MhIYLtqdvT5CdSP
