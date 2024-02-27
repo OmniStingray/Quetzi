@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwb57bhuly6jq"]
+
+[ext_resource type="Texture2D" uid="uid://cdux36s2ey4k0" path="res://gameplay/Sprite_Assets/GA_Quetzi_Heart.png" id="1_0dpyl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3jm6"]
+radius = 24.0
+
+[node name="Food" type="Area2D" groups=["food"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_0dpyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c3jm6")

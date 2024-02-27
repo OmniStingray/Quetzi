@@ -1,0 +1,127 @@
+[gd_scene load_steps=15 format=3 uid="uid://bhbkrt10lotpp"]
+
+[ext_resource type="Script" path="res://Scenes/gameplay.gd" id="1_rgvyq"]
+[ext_resource type="Script" path="res://Scenes/Walls.gd" id="2_6ohkc"]
+[ext_resource type="Texture2D" uid="uid://bpr5jcuo4om1m" path="res://gameplay/Sprite_Assets/GA_Quetzi_Wall.png" id="2_ga1j6"]
+[ext_resource type="PackedScene" uid="uid://1gohnxr37urb" path="res://Scenes/head.tscn" id="4_5n74f"]
+[ext_resource type="PackedScene" uid="uid://by1vy24uk38ml" path="res://Scenes/tail.tscn" id="5_hvhwa"]
+[ext_resource type="Script" path="res://Scenes/Bounds.gd" id="5_uy28k"]
+[ext_resource type="Script" path="res://Scenes/Spawner.gd" id="6_ttu3h"]
+[ext_resource type="PackedScene" uid="uid://btrcfr5d5tsmg" path="res://menus/hud.tscn" id="8_33nww"]
+[ext_resource type="AudioStream" uid="uid://dewgc4a35tetd" path="res://gameplay/Audio/Human Sacrifice (Ancient Aztec Traditional).wav" id="9_vlr7v"]
+[ext_resource type="AudioStream" uid="uid://bwsgiskgwr3ha" path="res://gameplay/Audio/monster-bite-44538-shorter.wav" id="10_fcehf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rb4bf"]
+texture = ExtResource("2_ga1j6")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_efxi8"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_rb4bf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_627rh"]
+size = Vector2(117, 1269)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hl8x"]
+size = Vector2(2933, 117)
+
+[node name="Game_Main" type="Node2D"]
+position = Vector2(11, 9)
+script = ExtResource("1_rgvyq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(53, 55)
+offset = Vector2(0, -64)
+zoom = Vector2(0.3, 0.3)
+
+[node name="Walls" type="Node" parent="."]
+script = ExtResource("2_6ohkc")
+
+[node name="TileMap" type="TileMap" parent="Walls"]
+tile_set = SubResource("TileSet_efxi8")
+format = 2
+layer_0/tile_data = PackedInt32Array(589811, 0, 0, 589813, 0, 0, 589814, 0, 0, 589815, 0, 0, 589816, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524301, 0, 0, -589811, 0, 0, -589813, 0, 0, -589814, 0, 0, -589815, 0, 0, -589816, 0, 0, -589817, 0, 0, -589818, 0, 0, -589819, 0, 0, -589820, 0, 0, -589821, 0, 0, -589822, 0, 0, -589823, 0, 0, -589824, 0, 0, -524289, 0, 0, -524290, 0, 0, -524291, 0, 0, -524292, 0, 0, -524293, 0, 0, -524294, 0, 0, -524295, 0, 0, -524296, 0, 0, -524297, 0, 0, -524298, 0, 0, -524299, 0, 0, -524301, 0, 0, -524303, 0, 0, -458767, 0, 0, -393231, 0, 0, -262159, 0, 0, -196623, 0, 0, -131087, 0, 0, -65551, 0, 0, -15, 0, 0, 65521, 0, 0, 131057, 0, 0, 196593, 0, 0, 262129, 0, 0, 327665, 0, 0, 458737, 0, 0, 524273, 0, 0, 589809, 0, 0, 589810, 0, 0, -524302, 0, 0, -589810, 0, 0, -589809, 0, 0, -524273, 0, 0, -458737, 0, 0, -327665, 0, 0, -262129, 0, 0, -196593, 0, 0, -131057, 0, 0, -65521, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 524302, 0, 0)
+
+[node name="WallCollisionBody" type="Area2D" parent="Walls" groups=["Walls"]]
+
+[node name="CollisionCornerTL" type="CollisionPolygon2D" parent="Walls/WallCollisionBody"]
+build_mode = 1
+polygon = PackedVector2Array(-1916, -773, -1915, -1148, -1542, -1147, -1542, -1029, -1798, -1029, -1798, -773)
+
+[node name="CollisionCornerTR" type="CollisionPolygon2D" parent="Walls/WallCollisionBody"]
+position = Vector2(901, 772)
+rotation = 1.56717
+build_mode = 1
+polygon = PackedVector2Array(-1916, -773, -1915, -1148, -1542, -1147, -1542, -1029, -1798, -1029, -1798, -773)
+
+[node name="CollisionCornerBR" type="CollisionPolygon2D" parent="Walls/WallCollisionBody"]
+position = Vector2(123, 4)
+rotation = 3.13894
+build_mode = 1
+polygon = PackedVector2Array(-1916, -773, -1915, -1148, -1542, -1147, -1542, -1029, -1798, -1029, -1798, -773)
+
+[node name="CollisionCornerBL" type="CollisionPolygon2D" parent="Walls/WallCollisionBody"]
+position = Vector2(-778, -775)
+rotation = 4.70702
+build_mode = 1
+polygon = PackedVector2Array(-1916, -773, -1915, -1148, -1542, -1147, -1542, -1029, -1798, -1029, -1798, -773)
+
+[node name="CollisionSideL" type="CollisionShape2D" parent="Walls/WallCollisionBody"]
+position = Vector2(-1856.5, 0)
+shape = SubResource("RectangleShape2D_627rh")
+
+[node name="CollisionSideR" type="CollisionShape2D" parent="Walls/WallCollisionBody"]
+position = Vector2(1983.5, 0)
+shape = SubResource("RectangleShape2D_627rh")
+
+[node name="CollisionSideT" type="CollisionShape2D" parent="Walls/WallCollisionBody"]
+position = Vector2(64, -1088.5)
+shape = SubResource("RectangleShape2D_0hl8x")
+
+[node name="CollisionSideB" type="CollisionShape2D" parent="Walls/WallCollisionBody"]
+position = Vector2(64, 1087.5)
+shape = SubResource("RectangleShape2D_0hl8x")
+
+[node name="Head" parent="." instance=ExtResource("4_5n74f")]
+unique_name_in_owner = true
+position = Vector2(53, 567)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Bounds" type="Node2D" parent="."]
+script = ExtResource("5_uy28k")
+
+[node name="UpperLeft" type="Marker2D" parent="Bounds"]
+position = Vector2(-1867, -1097)
+
+[node name="LowerRight" type="Marker2D" parent="Bounds"]
+position = Vector2(1973, 1079)
+
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("bounds")]
+script = ExtResource("6_ttu3h")
+bounds = NodePath("../Bounds")
+
+[node name="Tail" parent="." instance=ExtResource("5_hvhwa")]
+unique_name_in_owner = true
+position = Vector2(53, 689)
+
+[node name="HUD" parent="." instance=ExtResource("8_33nww")]
+unique_name_in_owner = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_vlr7v")
+volume_db = -10.0
+pitch_scale = 0.9
+autoplay = true
+
+[node name="Bite" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_fcehf")
+volume_db = 0.5
+pitch_scale = 0.81

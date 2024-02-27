@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://1gohnxr37urb"]
+
+[ext_resource type="Script" path="res://Scenes/head.gd" id="1_5hldy"]
+[ext_resource type="Texture2D" uid="uid://q8xcu71ot4rs" path="res://gameplay/Sprite_Assets/GA_Quetzi_1Head.png" id="1_cagvl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8s0bg"]
+radius = 58.0
+
+[node name="Head" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_5hldy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cagvl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8s0bg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
